@@ -37,18 +37,18 @@ class Task {
   });
 
   Map<String, dynamic> toJson() => {
-    'title': title,
-    'description': description,
-    'dueDate': dueDate.toIso8601String(),
-    'isCompleted': isCompleted,
-  };
+        'title': title,
+        'description': description,
+        'dueDate': dueDate.toIso8601String(),
+        'isCompleted': isCompleted,
+      };
 
   static Task fromJson(Map<String, dynamic> json) => Task(
-    title: json['title'],
-    description: json['description'],
-    dueDate: DateTime.parse(json['dueDate']),
-    isCompleted: json['isCompleted'],
-  );
+        title: json['title'],
+        description: json['description'],
+        dueDate: DateTime.parse(json['dueDate']),
+        isCompleted: json['isCompleted'],
+      );
 }
 
 class ToDoListScreen extends StatefulWidget {
@@ -117,7 +117,7 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
   Future<void> _saveTasks() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     List<String> taskList =
-    _tasks.map((task) => json.encode(task.toJson())).toList();
+        _tasks.map((task) => json.encode(task.toJson())).toList();
     await prefs.setStringList('tasks', taskList);
   }
 
@@ -127,9 +127,8 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
     if (taskList != null) {
       setState(() {
         _tasks.clear();
-        _tasks.addAll(taskList
-            .map((task) => Task.fromJson(json.decode(task)))
-            .toList());
+        _tasks.addAll(
+            taskList.map((task) => Task.fromJson(json.decode(task))).toList());
         _filterTasks();
       });
     }
@@ -174,7 +173,8 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
             fontSize: 28,
           ),
         ),
-        backgroundColor: Color(0xff283593),
+        // backgroundColor: Color(0xff283593),
+        backgroundColor: Colors.red,
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -208,14 +208,17 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
                 itemBuilder: (context, index) {
                   final task = _filteredTasks[index];
                   String formattedDate =
-                  DateFormat('MMM d, yyyy').format(task.dueDate);
+                      DateFormat('MMM d, yyyy').format(task.dueDate);
                   return ListTile(
-                    title: Text(task.title, style: TextStyle(color: Colors.white)),
+                    title:
+                        Text(task.title, style: TextStyle(color: Colors.white)),
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(task.description, style: TextStyle(color: Colors.white)),
-                        Text('Due: $formattedDate', style: TextStyle(color: Colors.white)),
+                        Text(task.description,
+                            style: TextStyle(color: Colors.white)),
+                        Text('Due: $formattedDate',
+                            style: TextStyle(color: Colors.white)),
                       ],
                     ),
                     trailing: Row(
