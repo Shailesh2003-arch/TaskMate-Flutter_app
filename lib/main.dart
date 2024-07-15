@@ -173,8 +173,7 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
             fontSize: 28,
           ),
         ),
-        // backgroundColor: Color(0xff283593),
-        backgroundColor: Colors.red,
+        backgroundColor: Color(0xff283593),
       ),
       body: Container(
         decoration: BoxDecoration(
