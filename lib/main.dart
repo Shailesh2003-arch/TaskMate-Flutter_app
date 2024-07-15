@@ -179,7 +179,7 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Colors.red,
+              Color(0xff30cfd0),
               Color(0xff330867),
             ],
           ),
