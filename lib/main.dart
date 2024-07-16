@@ -96,6 +96,17 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
       _saveTasks();
       _filterTasks();
     });
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+          content:Text("Task added !..."),
+        behavior: SnackBarBehavior.floating,
+         backgroundColor:  Color(0xff283593),
+        duration: Duration(seconds: 2),
+
+      ),
+    );
+
   }
 
   void _editTask(int index, Task updatedTask) {
@@ -120,6 +131,9 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
         _tasks.map((task) => json.encode(task.toJson())).toList();
     await prefs.setStringList('tasks', taskList);
   }
+
+
+
 
   Future<void> _loadTasks() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
